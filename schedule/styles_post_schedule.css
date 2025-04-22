@@ -17,3 +17,44 @@ th {
 .break {
     background-color: #ffcccb;
 }
+
+#form-container {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 300px; /* Fixed width for the form */
+    background-color: #f4f4f4;
+    box-sizing: border-box; /* Include padding and border in width/height */
+}
+
+#form-container input, #form-container textarea {
+    width: 100%; /* Ensure inputs and textarea take full width of the form */
+    max-width: 280px; /* Match the fixed width of input boxes */
+    height: 35px; /* Fixed height for input boxes */
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Prevent overflow due to padding */
+}
+
+#form-container textarea {
+    height: 35px; /* Match the height of input boxes */
+    resize: none; /* Prevent resizing */
+}
+
+#form-container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: flex-start; /* Ensure the button aligns with the form content */
+}
+
+#form-container button:hover {
+    background-color: #45a049;
+}
