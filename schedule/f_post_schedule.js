@@ -47,7 +47,28 @@ function saveClassDetails() {
 
 // Tooltip on hover
 function showTooltip(slot, event) {
-    const tooltip = document.getElementById('tooltip');
+    let tooltip = document.getElementById('dynamic-tooltip');
+
+    // Create the tooltip dynamically if it doesn't exist
+    if (!tooltip) {
+        tooltip = document.createElement('div');
+        tooltip.id = 'dynamic-tooltip';
+        tooltip.style.position = 'absolute';
+        tooltip.style.backgroundColor = '#333';
+        tooltip.style.color = '#fff';
+        tooltip.style.padding = '13px';
+        tooltip.style.borderRadius = '5px';
+        tooltip.style.fontSize = '18px';
+        tooltip.style.zIndex = '1000';
+        tooltip.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        tooltip.style.pointerEvents = 'none'; // Prevent tooltip from interfering with mouse events
+        tooltip.style.whiteSpace = 'normal'; // Allow text wrapping
+        tooltip.style.width = '250px'; // Fixed width for the tooltip
+        tooltip.style.wordWrap = 'break-word'; // Break long words if necessary
+        document.body.appendChild(tooltip);
+    }
+
+    // Update tooltip content and position
     tooltip.style.display = 'block';
     tooltip.style.left = `${event.pageX + 10}px`; // Position slightly to the right of the cursor
     tooltip.style.top = `${event.pageY + 10}px`; // Position slightly below the cursor
@@ -59,8 +80,10 @@ function showTooltip(slot, event) {
 }
 
 function hideTooltip() {
-    const tooltip = document.getElementById('tooltip');
-    tooltip.style.display = 'none';
+    const tooltip = document.getElementById('dynamic-tooltip');
+    if (tooltip) {
+        tooltip.style.display = 'none';
+    }
 }
 
 // Event listeners for slots
