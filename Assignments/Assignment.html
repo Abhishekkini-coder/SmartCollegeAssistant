@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Notes Section</title>
+  <link rel="stylesheet" href="Astyles.css" />
+  
+</head>
+<body>
+  <header>
+    <h1>My Notes</h1>
+    <button id="uploadBtn">
+      <span class="icon">📤</span> Upload Notes
+    </button>
+  </header>
+
+  <main>
+    <div id="notes-container" class="notes-blank-state">
+      <p class="blank-message">No notes yet. Upload your first notes to get started.</p>
+    </div>
+  </main>
+
+  <!-- Upload Modal -->
+  <div id="uploadModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close" id="closeUploadModal">&times;</span>
+      <h2>Upload Notes</h2>
+      <form id="uploadForm">
+        <label>Title:</label>
+        <input type="text" id="noteTitle" required />
+        <label>Description:</label>
+        <textarea id="noteDescription" rows="4" required></textarea>
+        <label>Upload Files:</label>
+        <input type="file" id="noteFiles" multiple required />
+        <button type="submit">Upload</button>
+      </form>
+    </div>
+  </div>
+
+
+<!-- Preview Modal -->
+<div id="previewOverlay" class="preview-overlay hidden">
+  <div id="previewModal" class="preview-modal">
+    <span class="close-btn" onclick="closePreview()">&times;</span>
+    <h2 id="previewTitle"></h2>
+    <p id="previewDescription"></p> <!-- Ensure this ID matches -->
+    <div id="previewFiles" class="preview-files"></div>
+    <button id="downloadAllBtn" onclick="downloadAllFiles()">Download All</button>
+  </div>
+</div>
+
+  <script src="Ascript.js"></script>
+</body>
+</html>
