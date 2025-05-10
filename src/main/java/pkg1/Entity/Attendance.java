@@ -1,6 +1,7 @@
 package pkg1.Entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -70,8 +71,14 @@ public class Attendance {
 		return student;
 	}
 
-	public void setStudent(Student student) {
+	public List<Attendance> setStudent(Student student) {
 		this.student = student;
+		return null;
+	}
+
+	public Attendance save(Attendance attendance) {
+		// TODO Auto-generated method stub
+		return null;
 	}
     
     

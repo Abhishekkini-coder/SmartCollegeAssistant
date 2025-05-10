@@ -1,11 +1,13 @@
 package pkg1.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import pkg1.Entity.Student;
 import pkg1.Service.StudentService;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -22,10 +24,16 @@ public class StudentController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody Student student) {
+    public ResponseEntity<?> login(@RequestBody Student student) {
         boolean isValid = studentService.validateLogin(student.getEmail(), student.getPassword());
-        return isValid ? "Login successful" : "Invalid credentials";
+        if (isValid) {
+            // Optional: Add token generation logic here
+            return ResponseEntity.ok().body(Map.of("message", "Login successful", "token", "dummyToken"));
+        } else {
+            return ResponseEntity.status(401).body(Map.of("message", "Invalid credentials"));
+        }
     }
+
 
     @GetMapping("/{id}")
     public Optional<Student> getStudentById(@PathVariable Long id) {

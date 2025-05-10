@@ -34,8 +34,17 @@ public class StudentService {
         return studentRepo.findById(id);
     }
 
-	public boolean validateLogin(String email, String password) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public boolean validateLogin(String email, String rawPassword) {
+        Optional<Student> studentOpt = studentRepo.findByEmail(email);
+        
+        if (studentOpt.isPresent()) {
+            Student student = studentOpt.get();
+            // Check hashed password match
+            return passwordEncoder.matches(rawPassword, student.getPassword());
+        }
+
+        return false;
+    }
+
+	
 }

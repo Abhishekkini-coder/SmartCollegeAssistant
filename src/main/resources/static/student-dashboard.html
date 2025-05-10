@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard • Smart College Assistant</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom color variables */
+    :root {
+      --color-primary: #FF5A5F;    /* Coral */
+      --color-secondary: #00A699;  /* Teal */
+      --color-neutral: #F4F4F4;    /* Light gray */
+      --color-highlight: #FF7900;  /* Orange accent */
+    }
+  </style>
+</head>
+<body class="bg-neutral min-h-screen font-sans relative overflow-hidden">
+
+  <!-- Decorative Animated Background -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-32 -left-32 w-80 h-80 bg-[var(--color-primary)] rounded-full opacity-20 animate-pulse"></div>
+    <div class="absolute -bottom-32 -right-32 w-80 h-80 bg-[var(--color-secondary)] rounded-full opacity-20 animate-pulse delay-2000"></div>
+    <div class="absolute top-1/2 -right-48 w-64 h-64 bg-[var(--color-highlight)] rounded-full opacity-10 animate-pulse delay-4000"></div>
+  </div>
+
+  <!-- Header / Navbar -->
+  <header class="bg-white shadow-md sticky top-0 z-20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-extrabold" style="color: var(--color-primary)">
+        Smart College Assistant
+      </a>
+      <div class="flex items-center space-x-4">
+        <span class="text-gray-600">Hello, Student!</span>
+        <a href="login.html"
+           class="px-4 py-2 bg-[var(--color-secondary)] text-white rounded-full shadow hover:bg-[var(--color-secondary)]/90 transition">
+          Log Out
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Welcome Hero -->
+  <section class="pt-10 pb-16 text-center">
+    <h1 class="text-5xl font-extrabold text-[var(--color-primary)] mb-4">
+      Your Dashboard
+    </h1>
+    <p class="text-lg text-gray-700">
+      Access attendance, grades, tasks, and notifications all in one place.
+    </p>
+  </section>
+
+  <!-- Dashboard Cards -->
+  <main class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-16">
+
+    <!-- Attendance Card -->
+    <a href="attendance.html"
+       class="relative bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition overflow-hidden group">
+      <!-- pulse accent -->
+      <div class="absolute -top-6 -right-6 w-24 h-24 bg-[var(--color-primary)] rounded-full opacity-20 animate-pulse"></div>
+      <div class="relative z-10 flex flex-col items-start">
+        <div class="flex items-center mb-4">
+          <svg class="w-8 h-8 text-[var(--color-primary)] mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M5 4v16h14V4H5zm2 2h10v4H7V6zm0 6h10v8H7v-8z"/>
+          </svg>
+          <h2 class="text-xl font-semibold text-[var(--color-primary)]">Attendance</h2>
+        </div>
+        <p class="text-gray-600">View subject‑wise attendance percentages and details.</p>
+      </div>
+    </a>
+
+    <!-- Gradebook Card -->
+    <a href="gradebook.html"
+       class="relative bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition overflow-hidden group">
+      <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--color-secondary)] rounded-full opacity-20 animate-pulse"></div>
+      <div class="relative z-10 flex flex-col items-start">
+        <div class="flex items-center mb-4">
+          <svg class="w-8 h-8 text-[var(--color-secondary)] mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2l1.45 4.5H18l-3.7 2.65L15.1 14 12 11.35 8.9 14l1.8-4.85L6 6.5h4.55L12 2z"/>
+          </svg>
+          <h2 class="text-xl font-semibold text-[var(--color-secondary)]">Gradebook</h2>
+        </div>
+        <p class="text-gray-600">Track your grades and academic performance over time.</p>
+      </div>
+    </a>
+
+    <!-- To‑Do List Card -->
+    <a href="todo.html"
+       class="relative bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition overflow-hidden group">
+      <div class="absolute top-1/2 -left-12 w-24 h-24 bg-[var(--color-highlight)] rounded-full opacity-20 animate-pulse"></div>
+      <div class="relative z-10 flex flex-col items-start">
+        <div class="flex items-center mb-4">
+          <svg class="w-8 h-8 text-[var(--color-highlight)] mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h12v2H3z"/>
+          </svg>
+          <h2 class="text-xl font-semibold text-[var(--color-highlight)]">To‑Do List</h2>
+        </div>
+        <p class="text-gray-600">Add, edit, and manage your tasks and reminders.</p>
+      </div>
+    </a>
+
+    <!-- Notifications Card -->
+    <a href="notifications.html"
+       class="relative bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition overflow-hidden group">
+      <div class="absolute bottom-0 right-0 w-24 h-24 bg-indigo-400 rounded-full opacity-10 animate-pulse"></div>
+      <div class="relative z-10 flex flex-col items-start">
+        <div class="flex items-center mb-4">
+          <svg class="w-8 h-8 text-indigo-600 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 22a2 2 0 0 0 2-2H10a2 2 0 0 0 2 2zm6-6v-5c0-3.1-1.6-5.6-4.5-6.3V4a1.5 1.5 0 0 0-3 0v.7C7.6 5.4 6 7.9 6 11v5l-2 2v1h16v-1l-2-2z"/>
+          </svg>
+          <h2 class="text-xl font-semibold text-indigo-600">Notifications</h2>
+        </div>
+        <p class="text-gray-600">See all your academic alerts and messages in one place.</p>
+      </div>
+    </a>
+
+  </main>
+
+  <!-- Load shared JS -->
+  <script src="js/main.js"></script>
+</body>
+</html>

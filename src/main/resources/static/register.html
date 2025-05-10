@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up • Smart College Assistant</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    :root {
+      --color-primary: #FF5A5F;
+      --color-secondary: #00A699;
+      --color-neutral: #F4F4F4;
+    }
+  </style>
+</head>
+<body class="bg-neutral flex items-center justify-center min-h-screen relative overflow-hidden">
+
+  <!-- Decorative Background -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-[var(--color-primary)] rounded-full opacity-20 animate-pulse"></div>
+    <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-[var(--color-secondary)] rounded-full opacity-20 animate-pulse delay-2000"></div>
+  </div>
+
+  <!-- Register Card -->
+  <div class="relative z-10 bg-white rounded-2xl shadow-2xl p-10 w-full max-w-md">
+    <h2 class="text-3xl font-extrabold mb-6 text-center text-[var(--color-primary)]">Create Your Account</h2>
+    <form id="registerForm" class="space-y-5">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+        <input id="name" type="text" required
+          class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] transition" />
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+        <input id="email" type="email" required
+          class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] transition" />
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input id="password" type="password" required
+          class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] transition" />
+      </div>
+      <button type="submit"
+        class="w-full py-3 mt-4 bg-[var(--color-secondary)] text-white font-semibold rounded-full shadow-lg hover:bg-[var(--color-secondary)]/90 transition">Sign Up</button>
+    </form>
+    <p class="mt-6 text-center text-sm text-gray-600">
+      Already have an account? <a href="login.html" class="text-[var(--color-primary)] font-medium hover:underline">Log In</a>
+    </p>
+  </div>
+
+  <!-- Register Script -->
+  <script src="js/register.js"></script>
+</body>
+</html>

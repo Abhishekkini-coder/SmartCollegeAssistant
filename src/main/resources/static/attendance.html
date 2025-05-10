@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Attendance • Smart College Assistant</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Your main stylesheet -->
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    :root {
+      --color-primary: #FF5A5F;
+      --color-secondary: #00A699;
+      --color-neutral: #F4F4F4;
+    }
+  </style>
+</head>
+<body class="bg-neutral min-h-screen font-sans relative overflow-hidden">
+
+  <!-- Background pulses -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-32 -left-32 w-72 h-72 bg-[var(--color-primary)] rounded-full opacity-20 animate-pulse"></div>
+    <div class="absolute -bottom-32 -right-32 w-72 h-72 bg-[var(--color-secondary)] rounded-full opacity-20 animate-pulse delay-2000"></div>
+  </div>
+
+  <!-- Navbar / Header -->
+  <header class="bg-white shadow sticky top-0 z-20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="student-dashboard.html" class="text-[var(--color-primary)] font-bold hover:underline">
+        ← Back to Dashboard
+      </a>
+      <h1 class="text-xl font-semibold text-gray-700">Attendance</h1>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-6 py-10 space-y-12">
+
+    <!-- Subject‑Wise Attendance Card -->
+    <section class="relative bg-white rounded-2xl shadow-lg p-8 overflow-hidden group">
+      <!-- Accent Circle -->
+      <div class="absolute -top-6 -right-6 w-24 h-24 bg-[var(--color-primary)] rounded-full opacity-20 animate-pulse"></div>
+      <div class="relative z-10">
+        <h2 class="text-2xl font-semibold text-[var(--color-primary)] mb-6">Subject‑Wise Attendance</h2>
+        <div class="overflow-x-auto">
+          <table id="attendance-table" class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-[var(--color-secondary)]/10">
+                <th class="p-3 font-medium text-gray-700">Subject</th>
+                <th class="p-3 font-medium text-gray-700">Attendance %</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Graphical Overview Card -->
+    <section class="relative bg-white rounded-2xl shadow-lg p-8 overflow-hidden group">
+      <!-- Accent Circles -->
+      <div class="absolute -top-6 -left-6 w-24 h-24 bg-[var(--color-secondary)] rounded-full opacity-20 animate-pulse"></div>
+      <div class="absolute bottom-0 right-0 w-24 h-24 bg-[var(--color-primary)] rounded-full opacity-10 animate-pulse delay-2000"></div>
+      <div class="relative z-10">
+        <h2 class="text-2xl font-semibold text-[var(--color-secondary)] mb-6">Graphical Overview</h2>
+        <div class="w-full" style="height: 300px;">
+          <canvas id="attendance-chart"></canvas>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Attendance loader -->
+  <script src="js/attendance.js"></script>
+</body>
+</html>
