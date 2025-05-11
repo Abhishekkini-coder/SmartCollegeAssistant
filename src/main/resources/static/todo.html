@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To-Do List • Smart College Assistant</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --color-primary: #FF5A5F;
+      --color-secondary: #00A699;
+    }
+  </style>
+</head>
+<body class="bg-neutral min-h-screen font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="student-dashboard.html" class="text-[var(--color-primary)] font-bold hover:underline">
+        ← Back to Dashboard
+      </a>
+      <h1 class="text-xl font-semibold text-gray-700">Your To-Do List</h1>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-8 space-y-8">
+
+    <!-- Add New Task -->
+    <section class="bg-white p-6 rounded-2xl shadow-lg">
+      <h2 class="text-2xl font-semibold mb-4">Add New Task</h2>
+      <div class="flex gap-4">
+        <input
+          id="new-task"
+          type="text"
+          placeholder="What’s next…"
+          class="flex-1 p-3 border rounded-lg focus:outline-none"
+        />
+        <button
+          onclick="addTask()"
+          class="px-6 py-3 bg-[var(--color-secondary)] text-white rounded-lg hover:bg-[var(--color-secondary)]/90"
+        >
+          Add
+        </button>
+      </div>
+    </section>
+
+    <!-- Progress Chart -->
+    <section class="bg-white p-6 rounded-2xl shadow-lg">
+      <h2 class="text-2xl font-semibold mb-4">Task Completion Progress</h2>
+      <div class="w-full h-64">
+        <canvas id="progress-chart" class="w-full h-full"></canvas>
+      </div>
+    </section>
+
+    <!-- Task List -->
+    <section class="bg-white p-6 rounded-2xl shadow-lg">
+      <h2 class="text-2xl font-semibold mb-4">Pending Tasks</h2>
+      <ul id="task-list" class="space-y-2">
+        <!-- Populated by JS -->
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- To-Do logic -->
+  <script src="js/todo.js"></script>
+</body>
+</html>

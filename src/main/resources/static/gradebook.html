@@ -1,92 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gradebook • Smart College Assistant</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/main.css" />
-  <!-- Plotly.js CDN -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
-  <style>
-    /* Custom Colors */
-    :root {
-      --color-primary: #FF5A5F;
-      --color-secondary: #00A699;
-      --color-highlight: #FF7900;
-      --color-neutral: #F4F4F4;
-    }
-  </style>
-</head>
-<body class="bg-neutral min-h-screen font-sans relative overflow-hidden">
-
-  <!-- Decorative Background Circles -->
-  <div class="absolute inset-0 -z-10 overflow-hidden">
-    <div class="absolute -top-32 -left-32 w-80 h-80 bg-[var(--color-primary)] rounded-full opacity-20 animate-pulse"></div>
-    <div class="absolute -bottom-32 -right-32 w-80 h-80 bg-[var(--color-secondary)] rounded-full opacity-20 animate-pulse delay-2000"></div>
-    <div class="absolute top-1/2 -right-48 w-64 h-64 bg-[var(--color-highlight)] rounded-full opacity-10 animate-pulse delay-4000"></div>
-  </div>
-
-  <!-- Navbar -->
-  <header class="bg-white shadow sticky top-0 z-20">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="student-dashboard.html" class="text-[var(--color-primary)] font-bold hover:underline">
-        ← Back to Dashboard
-      </a>
-      <h1 class="text-xl font-semibold text-gray-700">Gradebook</h1>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="max-w-5xl mx-auto px-6 py-10 space-y-12">
-
-    <!-- Grade Table Card -->
-    <section class="relative bg-white rounded-2xl shadow-lg p-8 overflow-hidden group">
-      <!-- Accent Circle -->
-      <div class="absolute -top-6 -right-6 w-24 h-24 bg-[var(--color-primary)] rounded-full opacity-20 animate-pulse"></div>
-      <div class="relative z-10">
-        <h2 class="text-2xl font-semibold text-[var(--color-primary)] mb-6">Subject & Assignment Grades</h2>
-        <div class="overflow-x-auto">
-          <table id="gradebook-table" class="w-full text-left border-collapse">
-            <thead>
-              <tr class="bg-[var(--color-secondary)]/10">
-                <th class="p-3 font-medium text-gray-700">Subject</th>
-                <th class="p-3 font-medium text-gray-700">Assignment</th>
-                <th class="p-3 font-medium text-gray-700">Marks Obtained</th>
-                <th class="p-3 font-medium text-gray-700">Feedback</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Populated by JS -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- Performance Over Assignments Chart Card -->
-	<section class="relative bg-white rounded-2xl shadow-lg p-8 overflow-hidden group">
-	  <!-- Accent Circles -->
-	  <div class="absolute -top-6 -left-6 w-24 h-24 bg-[var(--color-secondary)] rounded-full opacity-20 animate-pulse"></div>
-	  <div class="absolute bottom-0 right-0 w-24 h-24 bg-[var(--color-highlight)] rounded-full opacity-10 animate-pulse delay-2000"></div>
-
-	  <div class="relative z-10">
-	    <h2 class="text-2xl font-semibold text-[var(--color-secondary)] mb-6">
-	      Performance Over Assignments
-	    </h2>
-
-	    <!-- Replace the canvas with Plotly’s container -->
-	    <div id="performanceChart" class="w-full" style="height: 500px;"></div>
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	  <meta charset="UTF-8" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	  <title>Gradebook • Smart College Assistant</title>
+	  <!-- Tailwind CSS CDN -->
+	  <script src="https://cdn.tailwindcss.com"></script>
+	  <!-- Main Stylesheet -->
+	  <link rel="stylesheet" href="css/main.css" />
+	  <!-- Plotly.js CDN -->
+	 
+	
+	  <style>
+	    /* Custom Colors */
+	    :root {
+	      --color-primary: #FF5A5F;
+	      --color-secondary: #00A699;
+	      --color-highlight: #FF7900;
+	      --color-neutral: #F4F4F4;
+	    }
+	  </style>
+	</head>
+	<body class="bg-neutral min-h-screen font-sans relative overflow-hidden">
+	
+	  <!-- Decorative Background Circles -->
+	  <div class="absolute inset-0 -z-10 overflow-hidden">
+	    <div class="absolute -top-32 -left-32 w-80 h-80 bg-[var(--color-primary)] rounded-full opacity-20 animate-pulse"></div>
+	    <div class="absolute -bottom-32 -right-32 w-80 h-80 bg-[var(--color-secondary)] rounded-full opacity-20 animate-pulse delay-2000"></div>
+	    <div class="absolute top-1/2 -right-48 w-64 h-64 bg-[var(--color-highlight)] rounded-full opacity-10 animate-pulse delay-4000"></div>
 	  </div>
-	</section>
+	
+	  <!-- Navbar -->
+	  <header class="bg-white shadow sticky top-0 z-20">
+	    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+	      <a href="student-dashboard.html" class="text-[var(--color-primary)] font-bold hover:underline">
+	        ← Back to Dashboard
+	      </a>
+	      <h1 class="text-xl font-semibold text-gray-700">Gradebook</h1>
+	    </div>
+	  </header>
+	
+	  <!-- Main Content -->
+	  <main class="max-w-5xl mx-auto px-6 py-10 space-y-12">
+	
+	    <!-- Grade Table Card -->
+	    <section class="relative bg-white rounded-2xl shadow-lg p-8 overflow-hidden group">
+	      <!-- Accent Circle -->
+	      <div class="absolute -top-6 -right-6 w-24 h-24 bg-[var(--color-primary)] rounded-full opacity-20 animate-pulse"></div>
+	      <div class="relative z-10">
+	        <h2 class="text-2xl font-semibold text-[var(--color-primary)] mb-6">Subject & Assignment Grades</h2>
+	        <div class="overflow-x-auto">
+	          <table id="gradebook-table" class="w-full text-left border-collapse">
+	            <thead>
+	              <tr class="bg-[var(--color-secondary)]/10">
+	                <th class="p-3 font-medium text-gray-700">Subject</th>
+	                <th class="p-3 font-medium text-gray-700">Assignment</th>
+	                <th class="p-3 font-medium text-gray-700">Marks Obtained</th>
+	                <th class="p-3 font-medium text-gray-700">Feedback</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <!-- Populated by JS -->
+	            </tbody>
+	          </table>
+	        </div>
+	      </div>
+	    </section>
+	
+	    <!-- Performance Over Assignments Chart Card -->
+		<section class="relative bg-white rounded-2xl shadow-lg p-8 overflow-hidden group">
+		  <!-- Accent Circles -->
+		  <div class="absolute -top-6 -left-6 w-24 h-24 bg-[var(--color-secondary)] rounded-full opacity-20 animate-pulse"></div>
+		  <div class="absolute bottom-0 right-0 w-24 h-24 bg-[var(--color-highlight)] rounded-full opacity-10 animate-pulse delay-2000"></div>
+	
+		  <div class="relative z-10">
+		    <h2 class="text-2xl font-semibold text-[var(--color-secondary)] mb-6">
+		      Performance Over Assignments
+		    </h2>
+	
+		    <!-- Replace the canvas with Plotly’s container -->
+			<canvas id="gradebook-chart" class="w-full" style="max-height:400px;"></canvas>
 
-
-  </main>
-
-  <!-- Gradebook Loader -->
-  <script src="js/gradebook.js"></script>
-</body>
-</html>
+		  </div>
+		</section>
+	
+	
+	  </main>
+	
+	  <!-- Gradebook Loader -->
+	  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	  <script src="js/gradebook.js"></script>
+	</body>
+	</html>
