@@ -4,22 +4,28 @@ if (loginForm) {
     e.preventDefault();
     const email = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    const role = document.getElementById('role').value; // Get student/teacher
 
     try {
-      const res = await fetch('/students/login', {
+      const res = await fetch(`/login?role=${role}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
       });
+
       if (!res.ok) {
-        const err = await res.json();
-        alert(err.message || 'Login failed');
+        const text = await res.text();
+        alert(text || 'Login failed');
         return;
       }
-      const data = await res.json();
-      // Store token or user info as needed
-      localStorage.setItem('token', data.token);
-      window.location.href = 'student-dashboard.html';
+
+      // Redirect to respective dashboard
+      if (role === 'student') {
+        window.location.href = 'student-dashboard.html';
+      } else {
+        window.location.href = 'teacher-dashboard.html';
+      }
+
     } catch (err) {
       console.error(err);
       alert('Server error. Please try again later.');

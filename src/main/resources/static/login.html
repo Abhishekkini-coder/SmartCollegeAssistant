@@ -37,6 +37,18 @@
         <input id="password" type="password" required
           class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] transition" />
       </div>
+
+      <!-- Role Dropdown -->
+      <div>
+        <label for="role" class="block text-sm font-medium text-gray-700">Login as</label>
+        <select id="role" required
+          class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] transition">
+          <option value="">Select Role</option>
+          <option value="STUDENT">Student</option>
+          <option value="TEACHER">Teacher</option>
+        </select>
+      </div>
+
       <button type="submit"
         class="w-full py-3 mt-4 bg-[var(--color-secondary)] text-white font-semibold rounded-full shadow-lg hover:bg-[var(--color-secondary)]/90 transition">Log In</button>
     </form>

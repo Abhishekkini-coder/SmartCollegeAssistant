@@ -1,61 +1,57 @@
+// src/main/java/pkg1/Service/student/AttendanceService.java
 package pkg1.Service.student;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import pkg1.Entity.student.Attendance;
 import pkg1.Entity.student.AttendanceRepo;
-import pkg1.Entity.student.Student;
-
-import org.springframework.stereotype.Service;
 
 @Service("studentAttendanceService")
 public class AttendanceService {
+    private final AttendanceRepo repo;
 
-    @Autowired
-    private AttendanceRepo attendanceRepo;  // ✅ Corrected
+    public AttendanceService(AttendanceRepo repo) {
+        this.repo = repo;
+    }
 
+    /** Save/mark a new attendance record */
     public Attendance markAttendance(Attendance attendance) {
-        return attendanceRepo.save(attendance);
+        return repo.save(attendance);
     }
 
-    public List<Attendance> getAttendanceByStudentId(Long id) {
-        Student student = new Student();
-        student.setId(id);
-        return attendanceRepo.findByStudent(student);  // ✅ Corrected
+    /** Raw list of attendance records for a student */
+    public List<Attendance> getAttendanceByStudentId(Long studentId) {
+        return repo.findByStudentId(studentId);
     }
 
+    /**
+     * Returns List of Maps: { "subject": String, "attendance": Integer },
+     * matching exactly what your JS expects.
+     */
     public List<Map<String, Object>> getAttendancePercentageByStudentId(Long studentId) {
-        Student student = new Student();
-        student.setId(studentId);
+        List<Attendance> records = repo.findByStudentId(studentId);
 
-        List<Attendance> records = attendanceRepo.findByStudent(student);  // ✅ Corrected
-
-        Map<String, List<Attendance>> grouped = records.stream()
+        // group by subject
+        Map<String, List<Attendance>> bySubject = records.stream()
             .collect(Collectors.groupingBy(Attendance::getSubject));
 
-        List<Map<String, Object>> result = new ArrayList<>();
+        List<Map<String,Object>> result = new ArrayList<>();
+        bySubject.forEach((subject, recs) -> {
+            long total   = recs.size();
+            long present = recs.stream()
+                               .filter(r -> "Present".equalsIgnoreCase(r.getStatus()))
+                               .count();
+            int pct = total > 0
+                   ? (int) Math.round(present * 100.0 / total)
+                   : 0;
 
-        for (Map.Entry<String, List<Attendance>> entry : grouped.entrySet()) {
-            String subject = entry.getKey();
-            List<Attendance> subjectRecords = entry.getValue();
-
-            long total = subjectRecords.size();
-            long present = subjectRecords.stream()
-                .filter(a -> a.getStatus().equalsIgnoreCase("present"))
-                .count();
-
-            double percentage = total > 0 ? (present * 100.0) / total : 0.0;
-
-            Map<String, Object> item = new HashMap<>();
-            item.put("subject", subject);
-            item.put("attendance", Math.round(percentage));
-
-            result.add(item);
-        }
+            Map<String,Object> m = new HashMap<>();
+            m.put("subject", subject);
+            m.put("attendance", pct);
+            result.add(m);
+        });
 
         return result;
     }
